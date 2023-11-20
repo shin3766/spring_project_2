@@ -1,5 +1,7 @@
 package com.sparta.springproject2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sparta.springproject2.dto.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,18 +28,16 @@ public class User {
     @Column(nullable = false, unique = true, length = 10)
     private String username;
 
+    @JsonIgnore //password는 JsonIgnore로 처리
     @Column(nullable = false, length = 15)
     private String password;
 
     @Column(nullable = false)
-
     private String name;
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getUserId() {
-        return userId;
+    public User(UserRequestDto requestDto) {
+        this.username = requestDto.getUsername();
+        this.password = requestDto.getPassword();
+        this.name = requestDto.getName();
     }
 }
