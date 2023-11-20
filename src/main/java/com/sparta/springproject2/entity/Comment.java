@@ -19,8 +19,8 @@ public class Comment extends Timestamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
-//    @Column(name = "username", nullable = false)
-//    private String username; //userID로 해야하나?
+    @Column(name = "name", nullable = false)
+    private String name; //userID로 해야하나?
 
     @Column(name = "comment_contents", nullable = false, length = 500)
     private String commentContents;
@@ -39,7 +39,7 @@ public class Comment extends Timestamped{
 
     public Comment(CommentRequestDto requestDto) {
 //        this.commentId = requestDto.getCommentId();
-//        this.username = requestDto.getUsername();
+        this.name = requestDto.getName();
         this.commentContents = requestDto.getCommentContents();
 //        this.todo = requestDto.getTodo();
     }
